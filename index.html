@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8">
+      <title>50 cent usd price tracker xd</title>
+      <meta name="keywords" content="usd, ars, precio, dolar, argentina, cotiza, quilombo, pochoclo, xd">
+   </head>
+<-- https://codepen.io/MetalEscape/pen/WrYxVM -->
+   <style>
+      html, body {
+      margin:0;
+      height:100%;
+      background:#111111;
+      }
+      .mm {
+      margin:5% 5%;
+      height: 80%;
+      background-image: url("50.jpg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      text-align: center;
+      position: relative;
+      }
+      p {
+      position:absolute;
+      left:0;
+      right:0;
+      margin:0.5rem 0;
+      padding: 0 0.2rem;
+      font-family: impact;
+      font-size: 2.5rem;
+      text-transform: uppercase;
+      color: white;
+      letter-spacing: 1px;
+      text-shadow:2px 2px 0 #000,
+      -2px -2px 0 #000,
+      2px -2px 0 #000,
+      -2px 2px 0 #000,
+      0px 2px 0 #000,
+      2px 0px 0 #000,
+      0px -2px 0 #000,
+      -2px 0px 0 #000,
+      2px 2px 5px #000;
+      overflow-wrap: break-word;
+      }
+      .bottom {
+      bottom:0;
+      }
+      a {
+      position:absolute;
+      bottom:0;
+      right:0;
+      }
+   </style>
+   <body>
+      <div class="mm">
+         <p class="top">I really like 50 cent</p>
+         <p class="bottom">or as we call him in Argentina: <span id='amount_pesos'></span> pesos</p>
+      </div>
+   </body>
+   <script>
+      function getARS() {
+      	url = "https://api.yadio.io/exrates/USD"
+      	fetch(url)
+      		.then(function(response) {
+      			return response.json();
+      		})
+      		.then(function(jsonResponse) {
+      			let ars = jsonResponse['USD']['ARS'] / 2;
+      			document.getElementById('amount_pesos').innerHTML = ars.toFixed(2);
+      		});
+      }
+      
+      window.addEventListener('load', function () {
+      	getARS();
+        setInterval(getARS, 30000); // 30 seg
+      });
+   </script>
+</html>

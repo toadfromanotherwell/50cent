@@ -60,15 +60,15 @@
    </body>
    <script>
       function getARS() {
-      	url = "https://api.yadio.io/exrates/USD"
-      	fetch(url)
-      		.then(function(response) {
-      			return response.json();
-      		})
-      		.then(function(jsonResponse) {
-      			let ars = jsonResponse['USD']['ARS'] / 2;
-      			document.getElementById('amount_pesos').innerHTML = ars.toFixed(2);
-      		});
+      	url = "https://api.bluelytics.com.ar/v2/latest"
+	fetch(url)
+	.then(function(response) {
+		return response.json();
+	})
+	.then(function(jsonResponse) {
+		let ars = jsonResponse.blue.value_sell / 2;
+		document.getElementById('amount_pesos').innerHTML = ars.toFixed(2);
+	});
       }
       
       window.addEventListener('load', function () {
